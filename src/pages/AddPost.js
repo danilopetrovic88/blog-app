@@ -19,6 +19,13 @@ const AddPost = () => {
         history.push('/posts')
     }
 
+    // const resetForm = () => {
+    //     setNewPost({
+    //         title: '',
+    //         text: ''
+    //     })
+    // }
+
   return (
     <div className='container'>
         <div className='row'>
@@ -27,7 +34,8 @@ const AddPost = () => {
                <form onSubmit={handleSubmit}>
                    <input onChange={({ target }) => setNewPost({...newPost, title: target.value})} type='text' placeholder='title' className='form-control' name='title' /><br />
                    <input onChange={({ target }) => setNewPost({...newPost, text: target.value})} type='text' placeholder='text' className='form-control' name='text' /><br />
-                   <button className='btn btn-success'>Add</button>
+                   <button type='submit' className='btn btn-success'>Add</button>
+                   <button type='reset' className='btn btn-warning'>Reset</button>
                </form>
             </div>
         </div>
