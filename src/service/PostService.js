@@ -43,6 +43,19 @@ class PostService {
         return {};
       }
 
+      async getComments(id) {
+        try {
+          const { data } = await this.httpClient.get(`posts/${id}/?filter={"include":
+          ["comments"]}`);
+    
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+    
+        return {};
+      }
+
       async edit(id, post) {
         try {
           const { data } = await this.httpClient.put(`posts/${id}`, post);
@@ -65,6 +78,18 @@ class PostService {
         }
     
         return {};
+      }
+
+      async addComment(comment, postId) {
+        try {
+          const { data } = await this.httpClient.post(`posts/${postId}/comments`, comment);
+    
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+    
+        return null;
       }
 
 }
