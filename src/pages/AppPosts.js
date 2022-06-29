@@ -14,6 +14,15 @@ const AppPosts = () => {
         fetchPosts();
       }, []);
 
+      const removePost = async (postId) => {
+    
+        const data = await PostService.delete(postId);
+    
+        if (data.count > 0) {
+          setPosts(posts.filter((post) => post.id !== postId));
+        }
+      };
+
   return (
     <div className='container'>
         <div className='row'>
@@ -25,6 +34,9 @@ const AppPosts = () => {
                         </div>
                         <div className='card-footer'>
                             <Link to={`/posts/${post.id}`} className='btn btn-primary btn-sm'>View post</Link>
+                        </div>
+                        <div className='card-footer'>
+                            <button onClick={() => removePost(post.id)} className='btn btn-danger'>Delete</button>
                         </div>
                     </div>
                 )) }
