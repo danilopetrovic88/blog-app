@@ -5,6 +5,7 @@ import { Switch } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import AppPosts from './pages/AppPosts';
 import { Link } from 'react-router-dom';
+import SinglePost from './components/SinglePost';
 
 function App() {
   return (
@@ -16,8 +17,11 @@ function App() {
           </Link>
         </nav>
         <Switch>
-          <Route>
+          <Route exact path={'/posts'}>
             <AppPosts />
+          </Route>
+          <Route exact path={'/posts/:id'}>
+            <SinglePost />
           </Route>
         </Switch>
       </BrowserRouter>

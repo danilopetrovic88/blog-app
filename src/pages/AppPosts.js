@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import PostService from '../service/PostService';
 
 const AppPosts = () => {
@@ -22,8 +23,8 @@ const AppPosts = () => {
                         <div className='card-header'>
                             {post.title}
                         </div>
-                        <div className='card-body'>
-                            {post.text}
+                        <div className='card-footer'>
+                            <Link to={`/posts/${post.id}`} className='btn btn-primary btn-sm'>View post</Link>
                         </div>
                     </div>
                 )) }
