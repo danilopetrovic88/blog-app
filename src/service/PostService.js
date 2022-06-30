@@ -1,6 +1,7 @@
 import axios from "axios"
 
 class PostService {
+
     constructor() {
         this.httpClient = axios.create({
           baseURL: 'http://localhost:3000/api',
@@ -9,7 +10,7 @@ class PostService {
 
       async getAll() {
         try {
-          const { data } = await this.httpClient.get('posts');
+          const { data } = await this.httpClient.get('posts?filter={"include":["comments"]}');
     
           return data;
         } catch (error) {
@@ -33,22 +34,10 @@ class PostService {
 
       async get(id) {
         try {
-          const { data } = await this.httpClient.get(`posts/${id}`);
-    
-          return data;
-        } catch (error) {
-          console.log(error);
-        }
-    
-        return {};
-      }
-
-      async getComments(id) {
-        try {
-          const { data } = await this.httpClient.get(`posts/${id}/?filter={"include":
+          const { data } = await this.httpClient.get(`posts/${id}?filter={"include":
           ["comments"]}`);
-    
-          console.log(data);
+         
+          return data;
         } catch (error) {
           console.log(error);
         }
@@ -84,7 +73,7 @@ class PostService {
         try {
           const { data } = await this.httpClient.post(`posts/${postId}/comments`, comment);
     
-          console.log(data);
+          return data
         } catch (error) {
           console.log(error);
         }

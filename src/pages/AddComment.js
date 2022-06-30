@@ -10,6 +10,9 @@ const AddComment = ({id}) => {
         e.preventDefault()
 
         PostService.addComment(newComment, id)
+        setNewComment({
+            text: ''
+        })
     }
 
   return (

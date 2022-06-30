@@ -8,7 +8,7 @@ const AppPosts = () => {
     useEffect(() => {
         const fetchPosts = async () => {
           const data = await PostService.getAll();
-    
+          console.log(data);
           setPosts(data);
         };
         fetchPosts();
@@ -31,6 +31,9 @@ const AppPosts = () => {
                     <div key={post.id} className='card'>
                         <div className='card-header'>
                             {post.title}
+                        </div>
+                        <div className="card-body">
+                          Number of comments: {post.comments.length !== 0 ? post.comments.length : 'No comments for now'}
                         </div>
                         <div className='card-footer'>
                             <Link to={`/posts/${post.id}`} className='btn btn-primary btn-sm'>View post</Link>

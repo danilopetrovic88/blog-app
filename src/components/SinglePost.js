@@ -25,7 +25,17 @@ const SinglePost = () => {
         }
       }, [id]);
 
-      console.log(PostService.getComments(id))
+      useEffect(() => {
+        const fetchComments = async () => {
+          const { id: _, ...restData } = await PostService.get(id);
+
+          setComments([...restData.comments]);
+        };
+    
+        if (comments) {
+          fetchComments();
+        }
+      }, [comments]);
 
   return (
     <div>
@@ -38,9 +48,9 @@ const SinglePost = () => {
           <p className='p-2'>Post content: </p>
             {singlePost.text}
            <ul className='list-group'>Comments: 
-             {/* {comments.map((comment, index) => (
-               <li key={index} className='list-group-item'>{comment.text}</li>
-             ))} */}
+             { comments.map((comment) => (
+              <li key={comment.id} className="list-group-item">{comment.text}</li>
+             )) }
            </ul>
 
         </div>
